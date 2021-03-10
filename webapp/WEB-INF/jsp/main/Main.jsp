@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>URL Shortener</title>
+
 </head>
 <body>
-	<form id="targer" action="/short">
-		단축할 url : <input type="text" name="url" value="${url}"/>
+	<form id="target" action="${pageContext.request.contextPath}/short">
+		�떒異뺥븷 url : <input type="text" name="url" value="${url}"/>
 		<input type="submit" value="Go" />
 	</form>
 	
-	단축된 url : <input type="text" name="shortenUrl" value="${shortenUrl}" readonly="readonly"/>
+	�떒異뺣맂 url : <input type="text" name="shortenUrl" value="${shortenUrl}" readonly="readonly"/>
 </body>
 </html>

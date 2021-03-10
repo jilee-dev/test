@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class UrlShortenerDao {
 
 	final String DriverName = "com.mysql.cj.jdbc.Driver";
-	final String DBUrl = "jdbc:mysql://13.209.233.110:3306/testdb";
+	final String DBUrl = "jdbc:mysql://13.209.233.110:3306/testdb?useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8";
 	final String DBUser = "jilee";
 	final String DBPassword = "1q2w3e4r%T";
 	
