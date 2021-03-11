@@ -2,10 +2,10 @@
  
  URL을 입력받아 짧게 줄여주고(8 Character), Shortening된 URL을 입력하면 원래 URL로 리다이렉트하는 URL Shortenign Service
  
--java1.8
--spring5
--mysql(aws ec2)
--
+- java1.8
+- spring5
+- mysql(aws ec2)
+
 
 ** tomcat 설정
 
