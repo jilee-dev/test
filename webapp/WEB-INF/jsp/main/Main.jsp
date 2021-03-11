@@ -10,10 +10,10 @@
 </head>
 <body>
 	<form id="target" action="${pageContext.request.contextPath}/short">
-		단축할 url : <input type="text" name="url" value="${url}"/>
+		단축할 url : <input type="text" name="url" value="${url}" size="100px"/>
 		<input type="submit" value="Go" />
 	</form>
 	
-	단축된 url : <input type="text" name="shortenUrl" value="${shortenUrl}" readonly="readonly"/>
+	단축된 url : <input type="text" name="shortenUrl" value="${shortenUrl}" size="100px" readonly="readonly"/>
 </body>
 </html>

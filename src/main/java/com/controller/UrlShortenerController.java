@@ -2,6 +2,8 @@ package main.java.com.controller;
 
 import java.net.InetAddress;
 import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 
@@ -52,18 +54,6 @@ public class UrlShortenerController {
 			long convertUrl = crc.getValue();
 			String shortenUrl = Long.toHexString(convertUrl);
 			
-			System.out.println("addr" + request.getRemoteAddr());
-			System.out.println("host" + request.getRemoteHost());
-			System.out.println("port" + request.getRemotePort());
-			
-			System.out.println("name" + request.getServerName());
-			System.out.println("port" + request.getServerPort());
-			
-			System.out.println("1."+request.getContextPath());
-			System.out.println("2."+request.getRequestURL());
-			System.out.println("3."+request.getRequestURI());
-			System.out.println("4."+request.getServletPath());
-			
 			String path = request.getRequestURL().substring(0, request.getRequestURL().length()-5);
 			
 			//ÀÌ¹Ì ÀúÀåµÈ SHORTEN_URL Á¸ÀçÇÏ´ÂÁö 
@@ -87,17 +77,20 @@ public class UrlShortenerController {
 		//SHORTEN_URL¿¡ ÇØ´çÇÏ´Â ORIGINAL_URL·Î REDIRECT
 		if(!"".equals(shortenUrl)) {
 			String originalUrl = urlShortenerService.getOriginalUrl(shortenUrl);
-			String convertUrl = "";
-			char[] charArray = originalUrl.toCharArray();
-			for(char ch : charArray) {
-				if((0xAC00 <= ch && ch <= 0xD7A3) ||  (0x3131 <= ch && ch <= 0x318E)) {
-					convertUrl += URLEncoder.encode(""+ch, "UTF-8");
-				}else {
-					convertUrl += ch;					
+			if(!"".equals(originalUrl)) {
+				String convertUrl = originalUrl;
+				
+				//ÇÑ±Û Æ÷ÇÔ½Ã encoding ÁøÇà
+				Pattern pattern = Pattern.compile("[¤¡-¤¾¤¿-¤Ó°¡-ÆR]+");
+				Matcher matcher = pattern.matcher(convertUrl);
+				while(matcher.find()) {
+					convertUrl = convertUrl.replace(matcher.group(), URLEncoder.encode(matcher.group(), "UTF-8"));
 				}
+
+				response.sendRedirect(convertUrl);				
+			}else {
+				response.sendRedirect("http://www.naver.com");
 			}
-			System.out.println("originalUrl : " + originalUrl + ", convertUrl : " + convertUrl);
-			response.sendRedirect(convertUrl);
 		}
 	}
 }
