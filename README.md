@@ -9,7 +9,7 @@
 
 ** tomcat 설정
 
-1. apache-tomcat-9.0.43.zip을 받아 압축풀고, tomcat 서버 세팅.
+1. apache-tomcat-9.0.43.zip 또는 apache-tomcat-9.0.43.tar.gz을 받아 압축풀고, tomcat 서버 세팅.
 
 2. server.xml 추가(한글 인코딩)
 <Connector connectionTimeout="20000" port="8089" protocol="HTTP/1.1" redirectPort="8443" URIEncoding="UTF-8"/>
